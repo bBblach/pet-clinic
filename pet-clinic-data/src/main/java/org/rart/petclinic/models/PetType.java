@@ -1,4 +1,4 @@
-package org.rart.petclinic.model;
+package org.rart.petclinic.models;
 
 public class PetType extends BaseEntity {
 

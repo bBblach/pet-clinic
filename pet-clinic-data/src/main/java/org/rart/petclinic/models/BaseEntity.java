@@ -1,4 +1,4 @@
-package org.rart.petclinic.model;
+package org.rart.petclinic.models;
 
 import java.io.Serializable;
 

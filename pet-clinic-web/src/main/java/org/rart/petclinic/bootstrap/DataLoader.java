@@ -16,7 +16,7 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
 
 
-    @Autowired
+   @Autowired
     public DataLoader(OwnerService ownerService, VetService vetService) {
        this.ownerService=ownerService;
        this.vetService=vetService;
@@ -31,18 +31,20 @@ public class DataLoader implements CommandLineRunner {
         owner1.setLastName("Douglas");
 
         Owner owner2 = new Owner();
-        owner1.setId(2L);
-        owner1.setFirstName("Hubert");
-        owner1.setLastName("Moore");
+        owner2.setId(2L);
+        owner2.setFirstName("Hubert");
+        owner2.setLastName("Moore");
 
         Owner owner3 = new Owner();
-        owner1.setId(3L);
-        owner1.setFirstName("Richard");
-        owner1.setLastName("Bach");
+        owner3.setId(3L);
+        owner3.setFirstName("Richard");
+        owner3.setLastName("Bach");
 
         ownerService.save(owner1);
         ownerService.save(owner2);
         ownerService.save(owner3);
+
+        System.out.println("No of owners = " + ownerService.size());
         System.out.println("*************** Loaded Owners ************************* ");
 
         Vet vet1 = new Vet();

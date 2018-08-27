@@ -2,11 +2,11 @@ package org.rart.petclinic.services.map;
 
 
 import org.rart.petclinic.models.Owner;
-import org.rart.petclinic.services.CrudService;
+import org.rart.petclinic.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements CrudService<Owner,Long>  {
+public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements OwnerService {
 
 
     @Override
@@ -32,5 +32,11 @@ public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements C
     @Override
     public void delete(Owner object) {
         super.delete(object);
+    }
+
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
     }
 }

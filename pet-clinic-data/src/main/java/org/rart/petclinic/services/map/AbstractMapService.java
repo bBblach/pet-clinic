@@ -1,6 +1,5 @@
 package org.rart.petclinic.services.map;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.rart.petclinic.models.BaseEntity;
 
@@ -20,9 +19,8 @@ public class AbstractMapService<T extends BaseEntity,ID extends  Long> {
 
     T save(T object){
         if (object !=null){
-            if (object.getId() == 0){
+            if (object.getId() == null){ // dlaczego tu musi być null a nie może być 0 ? Chyba dlatego że typ id to Long a więc obiekt a więc domyślenie jest null
                 object.setId(getNextId());
-
             }
             map.put(object.getId(), object);
         }else{
@@ -39,16 +37,20 @@ public class AbstractMapService<T extends BaseEntity,ID extends  Long> {
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
 
+
     private Long getNextId(){
-        Long  nextId = 0L;
-        try{
-            nextId = Collections.max(map.keySet()) + 1L;
-        }catch (NoSuchElementException e){
-            nextId=1L;
-            logger.log(Level.DEBUG, "map is empty, assiging nextId to 1 ");
+
+        Long nextId = null;
+
+        try {
+            nextId = Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException e) {
+            nextId = 1L;
         }
+
         return nextId;
     }
+
     int size(){
         int size =  map.size();
         return size;

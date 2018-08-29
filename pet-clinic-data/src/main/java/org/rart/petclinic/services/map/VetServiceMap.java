@@ -1,6 +1,8 @@
 package org.rart.petclinic.services.map;
 
+import org.rart.petclinic.models.Specialty;
 import org.rart.petclinic.models.Vet;
+import org.rart.petclinic.services.SpecialtyService;
 import org.rart.petclinic.services.VetService;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,11 @@ import java.util.Set;
 @Service
 public class VetServiceMap extends AbstractMapService<Vet,Long> implements VetService {
 
+    private  final SpecialtyService specialtyService;
+
+    public VetServiceMap(SpecialtyService specialtyService) {
+        this.specialtyService = specialtyService;
+    }
 
     @Override
     public Vet findById(Long id) {
@@ -16,6 +23,15 @@ public class VetServiceMap extends AbstractMapService<Vet,Long> implements VetSe
 
     @Override
     public Vet save(Vet object) {
+        if (object.getSpecialties().size() > 0 ){
+            object.getSpecialties().forEach(specialty -> {
+                if(specialty.getId() == null){
+                    Specialty savedSpecialty = specialtyService.save(specialty);
+                    specialty.setId(savedSpecialty.getId());
+                }
+
+            });
+        }
         return super.save(object);
     }
 

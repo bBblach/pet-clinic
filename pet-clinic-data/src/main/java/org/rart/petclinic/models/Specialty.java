@@ -1,6 +1,6 @@
 package org.rart.petclinic.models;
 
-public class Specialty extends  BaseEntity{
+public class Specialty extends  BaseEntity {
 
     private  String description ;
 

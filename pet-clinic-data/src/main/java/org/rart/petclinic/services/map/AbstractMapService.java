@@ -13,6 +13,7 @@ public class AbstractMapService<T extends BaseEntity,ID extends  Long> {
     Set<T> findAll(){
         return  new HashSet<>(map.values());
     }
+
     T findById(ID id){
         return map.get(id);
     }
